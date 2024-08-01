@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 
@@ -75,7 +76,10 @@ class RoomtypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=RoomType::find($id);
+        $data->title=$request->title;
+        $data->detail=$request->detail;
+
     }
 
     /**

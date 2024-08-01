@@ -14,7 +14,7 @@
                     <p class="text-success">{{session('Success')}}</p>
                 @endif
                 <div class="table-responsive">
-                    <form method="post" action="{{url('admin/roomtype')}}">
+                    <form method="post" action="{{url('admin/roomtype/create')}}">
                         @csrf
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <tr>
