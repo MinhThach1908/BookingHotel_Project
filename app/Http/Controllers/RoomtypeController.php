@@ -36,10 +36,8 @@ class RoomtypeController extends Controller
      */
     public function store(Request $request)
     {
-        $data =new RoomType();
-        $data->title=$request->title;
-        $data->detail=$request->detail;
-        $data->save();
+        $data = $request->validate(['title' => 'required', 'detail' => 'required']);
+        RoomType::create($data);
 
         return redirect('admin/roomtype/create')->with('Success', 'Data has been added.');
     }
@@ -52,7 +50,8 @@ class RoomtypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = RoomType::find($id);
+        return view('roomtype.show', ['data' => $data]);
     }
 
     /**
@@ -63,7 +62,8 @@ class RoomtypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = RoomType::find($id);
+        return view('roomtype.edit', ['data' => $data]);
     }
 
     /**

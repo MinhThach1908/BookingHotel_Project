@@ -19,11 +19,11 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <tr>
                             <th>Title</th>
-                            <td><input type="text" class="form-control" /></td>
+                            <td><input type="text" name="title" class="form-control" /></td>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <td><textarea class="form-control"></textarea></td>
+                            <td><textarea name="description" class="form-control"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2">
