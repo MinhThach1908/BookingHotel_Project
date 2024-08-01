@@ -3,16 +3,12 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                                                                       href="https://datatables.net">official DataTables documentation</a>.</p>
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Room Types</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Room Types
+                    <a href="{{url('admin/roomtype/create')}}" class="float-right btn btn-success btn-sm">Add New</a>
+                </h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -33,13 +29,17 @@
                         </tfoot>
                         <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>Title</td>
-                            <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                            </td>
+                            @if($data)
+                                @foreach($data as $d)
+                                    <td>{{$d->id}}</td>
+                                    <td>{{$d->title}}</td>
+                                    <td>
+                                        <a href="{{url('admin/roomtype/'.$d->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="{{url('admin/roomtype/'.$d->id).'/edit'}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('admin/roomtype/'.$d->id).'/delete'}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                @endforeach
+                            @endif
                         </tr>
                         </tbody>
                     </table>
