@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomtypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,9 @@ Route::get('admin/roomtype/{id}/delete', [RoomtypeController::class, 'destroy'])
 Route::get('admin/roomtype/create', [RoomtypeController::class, 'create'])->name('roomtype.create');
 Route::post('admin/roomtype/create', [RoomtypeController::class, 'store'])->name('roomtype.store');
 Route::resource('admin/roomtype', RoomtypeController::class);
+
+// Room Routes
+Route::get('admin/room/{id}/delete', [RoomController::class, 'destroy'])->name('room.delete');
+Route::get('admin/room/create', [RoomController::class, 'create'])->name('room.create');
+Route::post('admin/room/create', [RoomController::class, 'store'])->name('room.store');
+Route::resource('admin/room', RoomController::class);

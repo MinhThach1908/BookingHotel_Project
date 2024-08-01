@@ -23,8 +23,8 @@
                                 <td><input value="{{$data->title}}" type="text" name="title" class="form-control" /></td>
                             </tr>
                             <tr>
-                                <th>Description</th>
-                                <td><textarea name="description" class="form-control"></textarea>{{$data->detail}}</td>
+                                <th>Detail</th>
+                                <td><textarea name="detail" class="form-control"></textarea>{{$data->detail}}</td>
                             </tr>
                             <tr>
                                 <td colspan="2">

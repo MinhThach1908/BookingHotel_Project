@@ -16,21 +16,21 @@
                 <div class="table-responsive">
                     <form method="post" action="{{url('admin/roomtype/create')}}">
                         @csrf
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <tr>
-                            <th>Title</th>
-                            <td><input type="text" name="title" class="form-control" /></td>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <td><textarea name="description" class="form-control"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <input type="submit" class="btn btn-primary" value="Submit"/>
-                            </td>
-                        </tr>
-                    </table>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <tr>
+                                <th>Title</th>
+                                <td><input type="text" name="title" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <th>Detail</th>
+                                <td><textarea name="detail" class="form-control"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
             </div>

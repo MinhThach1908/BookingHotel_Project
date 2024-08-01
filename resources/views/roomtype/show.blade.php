@@ -17,7 +17,7 @@
                                 <td>{{$data->title}}</td>
                             </tr>
                             <tr>
-                                <th>Description</th>
+                                <th>Detail</th>
                                 <td>{{$data->detail}}</td>
                             </tr>
                         </table>

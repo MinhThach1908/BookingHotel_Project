@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 
-class RoomtypeController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class RoomtypeController extends Controller
      */
     public function index()
     {
-        $data = RoomType::all();
-        return view('roomtype.index', ['data' => $data]);
+        $data = Room::all();
+        return view('room.index', ['data' => $data]);
     }
 
     /**
@@ -25,7 +26,8 @@ class RoomtypeController extends Controller
      */
     public function create()
     {
-        return view('roomtype.create');
+        $roomtypes = RoomType::all();
+        return view('room.create', ['roomtypes' => $roomtypes]);
     }
 
     /**
@@ -36,12 +38,11 @@ class RoomtypeController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new RoomType;
+        $data=new Room;
         $data->title=$request->title;
-        $data->detail=$request->detail;
         $data->save();
 
-        return redirect('admin/roomtype/create')->with('Success', 'Data has been added.');
+        return redirect('admin/room/create')->with('Success', 'Data has been added.');
     }
 
     /**
@@ -52,8 +53,8 @@ class RoomtypeController extends Controller
      */
     public function show($id)
     {
-        $data = RoomType::find($id);
-        return view('roomtype.show', ['data' => $data]);
+        $data = Room::find($id);
+        return view('room.show', ['data' => $data]);
     }
 
     /**
@@ -64,8 +65,8 @@ class RoomtypeController extends Controller
      */
     public function edit($id)
     {
-        $data = RoomType::find($id);
-        return view('roomtype.edit', ['data' => $data]);
+        $data = Room::find($id);
+        return view('room.edit', ['data' => $data]);
     }
 
     /**
@@ -77,12 +78,12 @@ class RoomtypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=RoomType::find($id);
+        $data=Room::find($id);
         $data->title=$request->title;
         $data->detail=$request->detail;
         $data->save();
 
-        return redirect('admin/roomtype/'.$id.'/edit')->with('Success', 'Data has been updated.');
+        return redirect('admin/room/'.$id.'/edit')->with('Success', 'Data has been updated.');
 
     }
 
@@ -94,7 +95,7 @@ class RoomtypeController extends Controller
      */
     public function destroy($id)
     {
-        RoomType::where('id',$id)->delete();
-        return redirect('admin/roomtype')->with('Success', 'Data has been deleted.');
+        Room::where('id',$id)->delete();
+        return redirect('admin/room')->with('Success', 'Data has been deleted.');
     }
 }
