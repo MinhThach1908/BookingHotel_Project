@@ -39,6 +39,7 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $data=new Room;
+        $data->room_type_id =$request->rt_id;
         $data->title=$request->title;
         $data->save();
 
@@ -53,8 +54,9 @@ class RoomController extends Controller
      */
     public function show($id)
     {
+        $roomtypes = RoomType::all();
         $data = Room::find($id);
-        return view('room.show', ['data' => $data]);
+        return view('room.show', ['data' => $data, 'roomtypes' => $roomtypes]);
     }
 
     /**
@@ -65,8 +67,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
+        $roomtypes = RoomType::all();
         $data = Room::find($id);
-        return view('room.edit', ['data' => $data]);
+        return view('room.edit', ['data' => $data, 'roomtypes' => $roomtypes]);
     }
 
     /**
@@ -79,8 +82,8 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         $data=Room::find($id);
+        $data->room_type_id =$request->rt_id;
         $data->title=$request->title;
-        $data->detail=$request->detail;
         $data->save();
 
         return redirect('admin/room/'.$id.'/edit')->with('Success', 'Data has been updated.');

@@ -58,12 +58,12 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <a class="nav-link @if(!request()->is('admin/roomtype*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Room Type</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse @if(request()->is('admin/roomtype*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{url('admin/roomtype/create')}}">Add New</a>
                     <a class="collapse-item" href="{{url('admin/roomtype')}}">View All</a>
@@ -73,12 +73,12 @@
 
         <!-- Rooms Master -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roomMaster"
+            <a class="nav-link @if(!request()->is('admin/room*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#roomMaster"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-box"></i>
                 <span>Room</span>
             </a>
-            <div id="roomMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="roomMaster" class="collapse @if(request()->is('admin/room*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{url('admin/room/create')}}">Add New</a>
                     <a class="collapse-item" href="{{url('admin/room')}}">View All</a>
