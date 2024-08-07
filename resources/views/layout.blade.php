@@ -43,7 +43,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{url('admin')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -163,17 +163,23 @@
 
         <!-- Customer Feedbacks Master -->
         <li class="nav-item">
-            <a class="nav-link @if(!request()->is('admin/feedback*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#feedbackMaster"
+            <a class="nav-link @if(!request()->is('admin/feedbacks*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#feedbackMaster"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-hotel"></i>
                 <span>Customer Feedbacks</span>
             </a>
-            <div id="feedbackMaster" class="collapse @if(request()->is('admin/feedback*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="feedbackMaster" class="collapse @if(request()->is('admin/feedbacks*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{url('admin/feedback/create')}}">Add New</a>
-                    <a class="collapse-item" href="{{url('admin/feedback')}}">View All</a>
+                    <a class="collapse-item" href="{{url('admin/feedbacks')}}">View All</a>
                 </div>
             </div>
+        </li>
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('admin/login')}}">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Logout</span></a>
         </li>
     </ul>
     <!-- End of Sidebar -->

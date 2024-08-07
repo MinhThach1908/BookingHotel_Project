@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,11 @@ Route::get('/', function () {
 Route::get('admin', function (){
     return view('dashboard');
 });
+
+// Admin Login
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'check_login'])->name('admin.check_login');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 // RoomType Routes
 Route::get('admin/roomtype/{id}/delete', [RoomtypeController::class, 'destroy'])->name('roomtype.delete');
@@ -72,3 +78,7 @@ Route::get('admin/service/{id}/delete', [ServiceController::class, 'destroy'])->
 Route::get('admin/service/create', [ServiceController::class, 'create'])->name('service.create');
 Route::post('admin/service/create', [ServiceController::class, 'store'])->name('service.store');
 Route::resource('admin/service', ServiceController::class);
+
+// Feedbacks Route
+Route::get('admin/feedbacks', [AdminController::class, 'feedbacks']);
+Route::get('admin/feedbacks/{id}/delete', [StaffController::class, 'destroy_feedback'])->name('destroy_feedback.delete');
