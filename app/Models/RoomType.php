@@ -9,6 +9,11 @@ class RoomType extends Model
 {
     use HasFactory;
 
+    function roomtypeimgs()
+    {
+        return $this->hasMany(RoomTypeImage::class, 'room_type_id');
+    }
+
     protected $fillable = [
         'title',
         'detail',

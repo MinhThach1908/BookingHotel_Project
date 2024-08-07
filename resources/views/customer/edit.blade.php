@@ -1,3 +1,4 @@
+
 @extends('layout')
 @section('content')
     <!-- Begin Page Content -->
@@ -25,28 +26,25 @@
                     <form method="post" enctype="multipart/form-data" action="{{url('admin/customer/'.$data->id)}}">
                         @csrf
                         @method('put')
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" >
                             <tr>
                                 <th>Full Name <span class="text-danger">*</span></th>
-                                <td><input value="{{$data->full_name}}" name="full_name" type="text"
-                                           class="form-control"/></td>
+                                <td><input value="{{$data->full_name}}" name="full_name" type="text" class="form-control" /></td>
                             </tr>
                             <tr>
                                 <th>Email <span class="text-danger">*</span></th>
-                                <td><input value="{{$data->email}}" name="email" type="email" class="form-control"/>
-                                </td>
+                                <td><input value="{{$data->email}}" name="email" type="email" class="form-control" /></td>
                             </tr>
                             <tr>
-                                <th>Phone Number <span class="text-danger">*</span></th>
-                                <td><input value="{{$data->mobile}}" name="mobile" type="text" class="form-control"/>
-                                </td>
+                                <th>Mobile <span class="text-danger">*</span></th>
+                                <td><input value="{{$data->phone}}" name="phone" type="text" class="form-control" /></td>
                             </tr>
                             <tr>
                                 <th>Photo</th>
                                 <td>
-                                    <input name="photo" type="file"/>
-                                    <input type="hidden" name="prev_photo" value="{{$data->photo}}"/>
-                                    <img width="100" src="{{asset('storage/app/'.$data->photo)}}"/>
+                                    <input name="photo" type="file" />
+                                    <input type="hidden" name="prev_photo" value="{{$data->photo}}" />
+                                    <img width="100" src="{{asset('storage/app/'.$data->photo)}}" />
                                 </td>
                             </tr>
                             <tr>
@@ -55,7 +53,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="submit" class="btn btn-primary"/>
+                                    <input type="submit" class="btn btn-primary" value="Submit"/>
                                 </td>
                             </tr>
                         </table>
@@ -68,3 +66,4 @@
     <!-- /.container-fluid -->
 
 @endsection
+

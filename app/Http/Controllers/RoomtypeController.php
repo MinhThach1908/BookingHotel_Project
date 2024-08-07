@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoomType;
 use Illuminate\Http\Request;
+use App\Models\RoomType;
+use App\Models\Roomtypeimage;
+use Illuminate\Support\Facades\Storage;
 
 class RoomtypeController extends Controller
 {
@@ -14,8 +16,8 @@ class RoomtypeController extends Controller
      */
     public function index()
     {
-        $data = RoomType::all();
-        return view('roomtype.index', ['data' => $data]);
+        $data=RoomType::all();
+        return view('roomtype.index',['data'=>$data]);
     }
 
     /**
@@ -36,13 +38,29 @@ class RoomtypeController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title'=>'required',
+            'price'=>'required',
+            'detail'=>'required',
+        ]);
+
         $data=new RoomType;
         $data->title=$request->title;
         $data->price=$request->price;
         $data->detail=$request->detail;
         $data->save();
 
-        return redirect('admin/roomtype/create')->with('Success', 'Data has been added.');
+        foreach($request->file('imgs') as $img){
+            $imgPath=$img->store('public/imgs');
+            $imgData=new Roomtypeimage;
+            $imgData->room_type_id=$data->id;
+            $imgData->image_src=$imgPath;
+            $imgData->image_alt=$request->title;
+            $imgData->save();
+        }
+
+        return redirect('admin/roomtype/create')->with('Success','Data has been added.');
     }
 
     /**
@@ -53,8 +71,8 @@ class RoomtypeController extends Controller
      */
     public function show($id)
     {
-        $data = RoomType::find($id);
-        return view('roomtype.show', ['data' => $data]);
+        $data=RoomType::find($id);
+        return view('roomtype.show',['data'=>$data]);
     }
 
     /**
@@ -65,8 +83,8 @@ class RoomtypeController extends Controller
      */
     public function edit($id)
     {
-        $data = RoomType::find($id);
-        return view('roomtype.edit', ['data' => $data]);
+        $data=RoomType::find($id);
+        return view('roomtype.edit',['data'=>$data]);
     }
 
     /**
@@ -84,8 +102,19 @@ class RoomtypeController extends Controller
         $data->detail=$request->detail;
         $data->save();
 
-        return redirect('admin/roomtype/'.$id.'/edit')->with('Success', 'Data has been updated.');
+        if($request->hasFile('imgs')){
+            foreach($request->file('imgs') as $img){
+                $imgPath=$img->store('public/imgs');
+                $imgData=new Roomtypeimage;
+                $imgData->room_type_id=$data->id;
+                $imgData->image_src=$imgPath;
+                $imgData->image_alt=$request->title;
+                $imgData->save();
+            }
+        }
 
+
+        return redirect('admin/roomtype/'.$id.'/edit')->with('Success','Data has been updated.');
     }
 
     /**
@@ -97,6 +126,15 @@ class RoomtypeController extends Controller
     public function destroy($id)
     {
         RoomType::where('id',$id)->delete();
-        return redirect('admin/roomtype')->with('Success', 'Data has been deleted.');
+        return redirect('admin/roomtype')->with('Success','Data has been deleted.');
+    }
+
+    public function destroy_image($img_id)
+    {
+        $data=Roomtypeimage::where('id',$img_id)->first();
+        Storage::delete($data->image_src);
+
+        Roomtypeimage::where('id',$img_id)->delete();
+        return response()->json(['bool'=>true]);
     }
 }

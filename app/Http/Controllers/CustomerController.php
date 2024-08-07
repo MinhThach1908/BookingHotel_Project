@@ -41,14 +41,13 @@ class CustomerController extends Controller
             'full_name'=>'required',
             'email'=>'required|email',
             'password'=>'required',
-            'phone'=>'required',
         ]);
 
-        if($request->hasFile('photo')){
-            $imgPath=$request->file('photo')->store('public/img');
-        }else{
-            $imgPath=null;
-        }
+//        if($request->hasFile('photo')){
+//            $imgPath=$request->file('photo')->store('imgs', 'public');
+//        }else{
+//            $imgPath=null;
+//        }
 
         $data=new Customer;
         $data->full_name=$request->full_name;
@@ -56,7 +55,7 @@ class CustomerController extends Controller
         $data->password=sha1($request->password);
         $data->phone=$request->phone;
         $data->address=$request->address;
-        $data->photo=$imgPath;
+        $data->photo='na';
         $data->save();
 
         $ref=$request->ref;
@@ -103,21 +102,20 @@ class CustomerController extends Controller
         $request->validate([
             'full_name'=>'required',
             'email'=>'required|email',
-            'phone'=>'required',
         ]);
 
-        if($request->hasFile('photo')){
-            $imgPath=$request->file('photo')->store('public/img');
-        }else{
-            $imgPath=$request->prev_photo;
-        }
+//        if($request->hasFile('photo')){
+//            $imgPath=$request->file('photo')->store('imgs', 'public');
+//        }else{
+//            $imgPath=$request->prev_photo;
+//        }
 
         $data=Customer::find($id);
         $data->full_name=$request->full_name;
         $data->email=$request->email;
         $data->phone=$request->phone;
         $data->address=$request->address;
-        $data->photo=$imgPath;
+        $data->photo='na';
         $data->save();
 
         return redirect('admin/customer/'.$id.'/edit')->with('Success','Data has been updated.');
