@@ -16,6 +16,14 @@
                                 <th>Title</th>
                                 <td>{{$data->title}}</td>
                             </tr>
+                            <tr>
+                                <th>Room Detail</th>
+                                <td>{{$data->room_detail}}</td>
+                            </tr>
+                            <tr>
+                                <th>Room View Image</th>
+                                <td><img width="100" src="{{'storage/app/'.$data->room_view_image}}" /></td>
+                            </tr>
                         </table>
                 </div>
             </div>

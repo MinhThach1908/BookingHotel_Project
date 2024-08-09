@@ -47,6 +47,7 @@ Route::get('admin/roomtypeimage/{id}/delete', [RoomtypeController::class, 'destr
 Route::get('admin/room/{id}/delete', [RoomController::class, 'destroy'])->name('room.delete');
 Route::get('admin/room/create', [RoomController::class, 'create'])->name('room.create');
 Route::post('admin/room/create', [RoomController::class, 'store'])->name('room.store');
+Route::get('admin/filter', [RoomController::class, 'filter'])->name('room.index');
 Route::resource('admin/room', RoomController::class);
 
 // Customer Route
@@ -54,12 +55,14 @@ Route::get('admin/customer/{id}/delete', [CustomerController::class, 'destroy'])
 Route::get('admin/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::post('admin/customer/create', [CustomerController::class, 'store'])->name('customer.store');
 Route::resource('admin/customer', CustomerController::class);
+Route::delete('admin/selected-customer', [CustomerController::class, 'deleteAll'])->name('customer.delete');
 
 // Bookings Route
-Route::get('admin/bookings/{id}/delete', [BookingController::class, 'destroy'])->name('bookings.delete');
-Route::get('admin/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-Route::post('admin/bookings/create', [BookingController::class, 'store'])->name('bookings.store');
-Route::resource('admin/bookings', BookingController::class);
+Route::get('admin/booking/{id}/delete', [BookingController::class, 'destroy'])->name('booking.delete');
+Route::get('admin/booking/available-rooms/{checkin_date}', [BookingController::class, 'available_rooms']);
+Route::get('admin/booking/create', [BookingController::class, 'create'])->name('booking.create');
+Route::post('admin/booking/create', [BookingController::class, 'store'])->name('booking.store');
+Route::resource('admin/booking', BookingController::class);
 
 // Departments Route
 Route::get('admin/departments/{id}/delete', [DepartmentController::class, 'destroy'])->name('departments.delete');

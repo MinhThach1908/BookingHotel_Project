@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -38,9 +39,23 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title'=>'required',
+            'room_detail'=>'required',
+        ]);
+
+        if ($request->hasFile('room_view_image')) {
+            $imgPath = $request->file('room_view_image')->store('public/imgs');
+        } else {
+            $imgPath = null;
+        }
+
         $data=new Room;
         $data->room_type_id =$request->rt_id;
         $data->title=$request->title;
+        $data->room_detail=$request->room_detail;
+        $data->room_view_image=$imgPath;
         $data->save();
 
         return redirect('admin/room/create')->with('Success', 'Data has been added.');
@@ -81,9 +96,23 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'title'=>'required',
+            'room_detail'=>'required',
+        ]);
+
+        if ($request->hasFile('room_view_image')) {
+            $imgPath = $request->file('room_view_image')->store('public/imgs');
+        } else {
+            $imgPath = null;
+        }
+
         $data=Room::find($id);
         $data->room_type_id =$request->rt_id;
         $data->title=$request->title;
+        $data->room_detail=$request->room_detail;
+        $data->room_view_image=$imgPath;
         $data->save();
 
         return redirect('admin/room/'.$id.'/edit')->with('Success', 'Data has been updated.');
@@ -100,5 +129,14 @@ class RoomController extends Controller
     {
         Room::where('id',$id)->delete();
         return redirect('admin/room')->with('Success', 'Data has been deleted.');
+    }
+
+    public function filter(Request $request){
+        $start_date=$request->input('start_date');
+        $end_date=$request->input('end_date');
+
+        $data = Room::where('created_at', '>=', $start_date)->where('created_at', '<=', $end_date)->get();
+
+        return view('room.index', ['data' => $data]);
     }
 }

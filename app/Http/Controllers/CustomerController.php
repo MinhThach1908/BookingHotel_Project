@@ -132,4 +132,11 @@ class CustomerController extends Controller
         Customer::where('id',$id)->delete();
         return redirect('admin/customer')->with('Success','Data has been deleted.');
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Customer::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

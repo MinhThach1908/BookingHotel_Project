@@ -18,4 +18,13 @@ class Booking extends Model
         'total_adults',
         'total_children',
     ];
+
+    function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    function room(){
+        return $this->belongsTo(Room::class);
+    }
 }

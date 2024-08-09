@@ -9,6 +9,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Customers
                     <a href="{{url('admin/customer/create')}}" class="float-right btn btn-success btn-sm">Add New</a>
+                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
                 </h6>
             </div>
             <div class="card-body">
@@ -19,6 +20,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
                             <th>FullName</th>
                             <th>Email</th>
@@ -28,6 +30,7 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
                             <th>FullName</th>
                             <th>Email</th>
@@ -38,7 +41,8 @@
                         <tbody>
                         @if($data)
                             @foreach($data as $d)
-                                <tr>
+                                <tr id="data_ids{{$d->id}}">
+                                    <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
                                     <td>{{$d->id}}</td>
                                     <td>{{$d->full_name}}</td>
                                     <td>{{$d->email}}</td>
@@ -69,6 +73,36 @@
 
         <!-- Page level custom scripts -->
         <script src="/js/demo/datatables-demo.js"></script>
+
+        <script>
+            $(function(e){
+                $("#select_all_ids").click(function (){
+                    $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+                });
+
+                $('#deleteAllSelected').click(function (e){
+                    e.preventDefault();
+                    var all_ids = [];
+                    $('input:checkbox[name=ids]:checked').each(function (){
+                        all_ids.push($(this).val());
+                    });
+
+                    $.ajax({
+                        url:"{{route('customer.delete')}}",
+                        type:"DELETE",
+                        data:{
+                            ids:all_ids,
+                            _token:'{{ csrf_token() }}'
+                        },
+                        success:function(response){
+                            $.each(all_ids,function (key, val){
+                                $('#data_ids'+val).remove();
+                            })
+                        }
+                    })
+                });
+            });
+        </script>
 
     @endsection
 

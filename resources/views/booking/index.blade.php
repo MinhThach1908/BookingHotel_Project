@@ -6,21 +6,27 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Customer Feedbacks
-                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm" id="deleteAllSelected">Delete All Selected</a>
-                    @if(Session::has('Success'))
-                        <p class="text-success">{{session('Success')}}</p>
-                    @endif
+                <h6 class="m-0 font-weight-bold text-primary">All Bookings
+                    <a href="{{url('admin/booking/create')}}" class="float-right btn btn-success btn-sm">Add New</a>
+                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
                 </h6>
             </div>
             <div class="card-body">
+                @if(Session::has('Success'))
+                    <p class="text-success">{{session('Success')}}</p>
+                @endif
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
-                            <th>Feedback</th>
+                            <th>Customer</th>
+                            <th>Room No.</th>
+                            <th>Room Type</th>
+                            <th>CheckIn Date</th>
+                            <th>CheckOut Date</th>
+                            <th>Ref</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -28,23 +34,29 @@
                         <tr>
                             <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
-                            <th>Feedback</th>
+                            <th>Customer</th>
+                            <th>Room No.</th>
+                            <th>Room Type</th>
+                            <th>CheckIn Date</th>
+                            <th>CheckOut Date</th>
+                            <th>Ref</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        @if($data)
-                            @foreach($data as $d)
-                                <tr id="data_ids{{$d->id}}">
-                                    <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
-                                    <td>{{$d->id}}</td>
-                                    <td>{{$d->feedback_content}}</td>
-                                    <td>
-                                        <a onclick="return confirm('Are you sure you want to delete this data?')" href="{{url('admin/testimonial/'.$d->id).'/delete'}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
+                        @foreach($data as $booking)
+                            <tr id="data_ids{{$booking->id}}">
+                                <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$booking->id}}"></td>
+                                <td>{{$booking->id}}</td>
+                                <td>{{$booking->customer->full_name}}</td>
+                                <td>{{$booking->room->title}}</td>
+                                <td>{{$booking->room->Roomtype->title}}</td>
+                                <td>{{$booking->checkin_date}}</td>
+                                <td>{{$booking->checkout_date}}</td>
+                                <td>{{$booking->ref}}</td>
+                                <td><a href="{{url('admin/booking/'.$booking->id.'/delete')}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

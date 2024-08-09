@@ -20,7 +20,7 @@
                         @method('put')
                         <table class="table table-bordered">
                             <tr>
-                                <th>Select Room Type</th>
+                                <th>Select Room Type <span class="text-danger">*</span></th>
                                 <td>
                                     <select name="rt_id" class="form-control">
                                         <option value="0">--- Select ---</option>
@@ -31,8 +31,20 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Title</th>
+                                <th>Title <span class="text-danger">*</span></th>
                                 <td><input value="{{$data->title}}" name="title" type="text" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <th>Room Detail <span class="text-danger">*</span></th>
+                                <td><textarea name="room_detail" class="form-control">{{$data->room_detail}}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th>Room View Image</th>
+                                <td>
+                                    <input name="room_view_image" type="file" />
+                                    <input type="hidden" name="prev_room_view_image" value="{{$data->room_view_image}}" />
+                                    <img width="100" src="{{'storage/app/'.$data->room_view_image}}" />
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2">

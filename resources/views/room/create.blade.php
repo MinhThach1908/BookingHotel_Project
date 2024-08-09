@@ -14,11 +14,11 @@
                     <p class="text-success">{{session('Success')}}</p>
                 @endif
                 <div class="table-responsive">
-                    <form method="post" action="{{url('admin/room/create')}}">
+                    <form method="post" enctype="multipart/form-data" action="{{url('admin/room/create')}}">
                         @csrf
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <tr>
-                                <th>Select Room Type</th>
+                                <th>Select Room Type <span class="text-danger">*</span></th>
                                 <td>
                                     <select name="rt_id" class="form-control">
                                         <option value="0">--- Select one ---</option>
@@ -29,8 +29,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Title</th>
+                                <th>Title <span class="text-danger">*</span></th>
                                 <td><input type="text" name="title" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <th>Room Detail <span class="text-danger">*</span></th>
+                                <td><textarea name="room_detail" class="form-control"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>Room View Image <span class="text-danger">*</span></th>
+                                <td><input name="room_view_image" multiple type="file" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
