@@ -159,4 +159,11 @@ class BookingController extends Controller
 
         return response()->json(['data'=>$data]);
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Booking::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

@@ -116,4 +116,11 @@ class StaffController extends Controller
         Staff::where('id', $id)->delete();
         return redirect('admin/staff')->with('Success', 'Data has been deleted.');
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Staff::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

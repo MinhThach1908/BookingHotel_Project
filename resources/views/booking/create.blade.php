@@ -81,7 +81,7 @@
             $(document).ready(function(){
                 $(".checkin-date").on('blur',function(){
                     var _checkindate=$(this).val();
-                    // Ajax
+                    
                     $.ajax({
                         url:"{{url('admin/booking')}}/available-rooms/"+_checkindate,
                         dataType:'json',

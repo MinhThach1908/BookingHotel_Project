@@ -137,4 +137,11 @@ class RoomtypeController extends Controller
         Roomtypeimage::where('id',$img_id)->delete();
         return response()->json(['bool'=>true]);
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        RoomType::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

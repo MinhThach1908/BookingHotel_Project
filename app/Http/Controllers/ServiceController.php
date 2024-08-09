@@ -125,4 +125,11 @@ class ServiceController extends Controller
         Service::where('id',$id)->delete();
         return redirect('admin/service')->with('Success','Data has been deleted.');
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Service::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

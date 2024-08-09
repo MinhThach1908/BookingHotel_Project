@@ -139,4 +139,11 @@ class RoomController extends Controller
 
         return view('room.index', ['data' => $data]);
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Room::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

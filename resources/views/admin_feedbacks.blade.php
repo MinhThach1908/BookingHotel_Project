@@ -7,7 +7,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Customer Feedbacks
-                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm" id="deleteAllSelected">Delete All Selected</a>
+                    <a href="{{url('admin/selected-feedback')}}" class="float-right btn btn-danger btn-sm" id="deleteAllSelected">Delete All Selected</a>
                     @if(Session::has('Success'))
                         <p class="text-success">{{session('Success')}}</p>
                     @endif
@@ -78,7 +78,7 @@
                     });
 
                     $.ajax({
-                        url:"{{route('customer.delete')}}",
+                        url:"{{route('feedback.delete')}}",
                         type:"DELETE",
                         data:{
                             ids:all_ids,

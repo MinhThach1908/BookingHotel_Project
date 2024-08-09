@@ -55,4 +55,11 @@ class DepartmentController extends Controller
         Department::where('id', $id)->delete();
         return redirect()->route('departments.index')->with('Success', 'Department deleted successfully.');
     }
+
+    public function deleteALl(Request $request)
+    {
+        $ids=$request->ids;
+        Department::whereIn('id', $ids)->delete();
+        return response()->json(['Success'=>"Deleted successfully."]);
+    }
 }

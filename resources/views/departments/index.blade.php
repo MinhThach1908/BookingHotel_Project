@@ -8,7 +8,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Departments
                     <a href="{{url('admin/departments/create')}}" class="float-right btn btn-success btn-sm">Add New</a>
-                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
+                    <a href="{{url('admin/selected-departments')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
                 </h6>
             </div>
             <div class="card-body">
@@ -37,8 +37,8 @@
                         </tfoot>
                         <tbody>
                         @foreach ($departments as $department)
-                            <tr id="data_ids{{$d->id}}">
-                                <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
+                            <tr id="data_ids{{$department->id}}">
+                                <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$department->id}}"></td>
                                 <td>{{ $department->id }}</td>
                                 <td>{{ $department->title }}</td>
                                 <td>{{ $department->detail }}</td>
@@ -86,7 +86,7 @@
                     });
 
                     $.ajax({
-                        url:"{{route('customer.delete')}}",
+                        url:"{{route('departments.delete')}}",
                         type:"DELETE",
                         data:{
                             ids:all_ids,

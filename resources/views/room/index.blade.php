@@ -8,7 +8,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Rooms
                     <a href="{{url('admin/room/create')}}" class="float-right btn btn-success btn-sm">Add New</a>
-                    <a href="{{url('admin/selected-customer')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
+                    <a href="{{url('admin/selected-room')}}" class="float-right btn btn-danger btn-sm mr-3" id="deleteAllSelected">Delete All Selected</a>
                 </h6>
             </div>
             <div class="card-body">
@@ -120,7 +120,7 @@
                     });
 
                     $.ajax({
-                        url:"{{route('customer.delete')}}",
+                        url:"{{route('room.delete')}}",
                         type:"DELETE",
                         data:{
                             ids:all_ids,
