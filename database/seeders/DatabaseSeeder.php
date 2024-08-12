@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RoomTypeSeeder::class,
             CustomerSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

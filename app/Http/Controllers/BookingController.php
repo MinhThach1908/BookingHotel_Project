@@ -51,7 +51,6 @@ class BookingController extends Controller
             'roomprice' => 'required',
         ]);
 
-
         if ($request->ref == 'front') {
             $sessionData = [
                 'customer_id' => $request->customer_id,
@@ -82,6 +81,7 @@ class BookingController extends Controller
                 'cancel_url' => 'http://localhost/laravel-apps/hotelManage/booking/fail',
             ]);
             return redirect($session->url);
+
         } else {
             $data = new Booking;
             $data->customer_id = $request->customer_id;

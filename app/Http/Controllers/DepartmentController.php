@@ -26,7 +26,7 @@ class DepartmentController extends Controller
         ]);
 
         Department::create($request->all());
-        return redirect()->route('departments.index')->with('Success', 'Department created successfully.');
+        return redirect()->route('departments.index')->with('Success', 'Data created successfully.');
     }
 
     public function show(Department $department)
@@ -47,13 +47,13 @@ class DepartmentController extends Controller
         ]);
 
         $department->update($request->all());
-        return redirect()->route('departments.index')->with('Success', 'Department updated successfully.');
+        return redirect()->route('departments.index')->with('Success', 'Data updated successfully.');
     }
 
     public function destroy(int $id)
     {
         Department::where('id', $id)->delete();
-        return redirect()->route('departments.index')->with('Success', 'Department deleted successfully.');
+        return redirect()->route('departments.index')->with('Success', 'Data deleted successfully.');
     }
 
     public function deleteALl(Request $request)
