@@ -8,6 +8,7 @@ use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,7 @@ Route::get('admin/booking/create', [BookingController::class, 'create'])->name('
 Route::post('admin/booking/create', [BookingController::class, 'store'])->name('booking.store');
 Route::resource('admin/booking', BookingController::class);
 Route::delete('admin/selected-booking', [BookingController::class, 'deleteAll'])->name('booking.delete');
+Route::get('booking',[BookingController::class,'front_booking']);
 
 // Departments Route
 Route::get('admin/departments/{id}/delete', [DepartmentController::class, 'destroy'])->name('departments.delete');
@@ -92,3 +94,13 @@ Route::delete('admin/selected-service', [ServiceController::class, 'deleteAll'])
 Route::get('admin/feedbacks', [AdminController::class, 'feedbacks']);
 Route::get('admin/feedbacks/{id}/delete', [AdminController::class, 'destroy_feedback'])->name('destroy_feedback.delete');
 Route::delete('admin/selected-feedback', [AdminController::class, 'deleteAll'])->name('feedback.delete');
+
+// Customer Route
+route::get('/room_details/{id}', [HomeController::class, 'room_details']);
+route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
+route::get('/hotel_gallary', [HomeController::class, 'hotel_gallary']);
+route::get('/our_rooms', [HomeController::class, 'search_rooms']);
+route::get('/our_rooms', [HomeController::class, 'our_rooms']);
+route::get('/',[HomeController::class,'home']);
+
+

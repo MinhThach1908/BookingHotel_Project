@@ -44,7 +44,7 @@
                                     <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
                                     <td>{{$d->id}}</td>
                                     <td>{{$d->full_name}}</td>
-                                    <td><img width="80" src="{{asset('storage/app/'.$d->photo)}}" /></td>
+                                    <td><img class="img-thumbnail" src="{{$d->photo}}" style="width: 300px" alt=""></td>
                                     <td>{{$d->department->title}}</td>
                                     <td>
                                         <a href="{{url('admin/staff/'.$d->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
