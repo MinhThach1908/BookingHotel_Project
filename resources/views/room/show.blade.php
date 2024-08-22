@@ -22,7 +22,7 @@
                             </tr>
                             <tr>
                                 <th>Room View Image</th>
-                                <td><img width="100" src="{{'storage/app/'.$data->room_view_image}}" /></td>
+                                <td><img width="100" src="{{$data->room_view_image}}" /></td>
                             </tr>
                         </table>
                 </div>

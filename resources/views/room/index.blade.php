@@ -51,8 +51,6 @@
                             <th>Room Type</th>
                             <th>Title</th>
                             <th>Room Detail</th>
-                            <th>Room View Image</th>
-                            <th>Created At</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -63,8 +61,6 @@
                             <th>RoomType</th>
                             <th>Title</th>
                             <th>Room Detail</th>
-                            <th>Room View Image</th>
-                            <th>Created At</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
@@ -77,8 +73,6 @@
                                     <td>{{$d->roomtype->title}}</td>
                                     <td>{{$d->title}}</td>
                                     <td>{{$d->room_detail}}</td>
-                                    <td><img class="img-thumbnail" src="{{$d->room_view_image}}" style="width: 300px" alt=""></td>
-                                    <td>{{$d->created_at}}</td>
                                     <td>
                                         <a href="{{url('admin/room/'.$d->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                         <a href="{{url('admin/room/'.$d->id).'/edit'}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

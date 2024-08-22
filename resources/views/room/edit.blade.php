@@ -43,7 +43,7 @@
                                 <td>
                                     <input name="room_view_image" type="file" />
                                     <input type="hidden" name="prev_room_view_image" value="{{$data->room_view_image}}" />
-                                    <img width="100" src="{{'storage/app/'.$data->room_view_image}}" />
+                                    <img width="100" src="{{$data->room_view_image}}" />
                                 </td>
                             </tr>
                             <tr>

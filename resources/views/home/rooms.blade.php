@@ -62,8 +62,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div id="serv_hover"  class="room">
                             <div class="room_img">
-{{--                                <figure><img style="height: 200px;width: 320px" src="/storage/imgs/{{$rooms->room_view_image}}" alt="#"/></figure>--}}
-                                <figure><img style="height: 200px;width: 320px" src="http://127.0.0.1:8000/img/about.png" alt="#"/></figure>
+                                <figure><img style="height: 200px;width: 320px" src="{{$rooms->room_view_image}}" alt="#"/></figure>
                             </div>
                             <div class="bed_room">
                                 <h3>{{$rooms->title}}</h3>

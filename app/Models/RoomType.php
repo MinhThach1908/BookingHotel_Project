@@ -14,6 +14,11 @@ class RoomType extends Model
         return $this->hasMany(RoomTypeImage::class, 'room_type_id');
     }
 
+    function rooms()
+    {
+        return $this->hasMany(Room::class, 'room_type_id');
+    }
+
     protected $fillable = [
         'title',
         'detail',

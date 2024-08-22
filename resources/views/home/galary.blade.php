@@ -12,7 +12,7 @@
 
                 <div class="col-md-3 col-sm-6">
                     <div class="gallery_img">
-                        <figure><img src="/gallary/{{$gallary->image}}" alt="#"/></figure>
+                        <figure><img src="{{$gallary->image}}" alt="#"/></figure>
                     </div>
                 </div>
 

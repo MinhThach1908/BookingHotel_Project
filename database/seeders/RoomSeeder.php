@@ -15,10 +15,8 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        // Fetch all room type IDs from the database
         $roomTypeIds = DB::table('room_types')->pluck('id')->toArray();
 
-        // Ensure there are room types available
         if (empty($roomTypeIds)) {
             throw new \Exception('No room types found in the database.');
         }

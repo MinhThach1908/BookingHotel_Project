@@ -42,7 +42,7 @@
                                     <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
                                     <td>{{$d->id}}</td>
                                     <td>{{$d->title}}</td>
-                                    <td><img width="100" src="{{'storage/app/'.$d->photo}}" /></td>
+                                    <td><img class="img-thumbnail" width="100" src="{{$d->photo}}" /></td>
                                     <td>
                                         <a href="{{url('admin/service/'.$d->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                         <a href="{{url('admin/service/'.$d->id).'/edit'}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

@@ -94,9 +94,11 @@ class HomeController extends Controller
     {
         $room = Room::all();
 
+        $roomtype = RoomType::all();
+
         $gallary = Gallary::all();
 
-        return view('home.index',compact('room','gallary'));
+        return view('home.index',compact('room','gallary', 'roomtype'));
     }
 
 }

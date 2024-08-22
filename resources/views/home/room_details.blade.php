@@ -50,7 +50,7 @@
             <div class="col-md-8">
                 <div id="serv_hover"  class="room">
                     <div style="padding: 20px" class="room_img">
-                        <figure><img style="height: 400px;width: 800px" src="/storage/imgs/{{$room->room_view_image}}" alt="#"/></figure>
+                        <figure><img style="height: 400px;width: 800px" src="{{$room->room_view_image}}" alt="#"/></figure>
                     </div>
                     <div class="bed_room">
                         <h3>{{$room->title}}</h3>
@@ -86,7 +86,7 @@
 
                 @endif
 
-                <form action="{{url('add_booking',$room->id)}}}" method="Post">
+                <form action="{{route('paypal')}}" method="Post">
 
                     @csrf
                     <tr>
@@ -118,7 +118,7 @@
                             @if(Session::has('data'))
                                 <input type="hidden" name="customer_id" value="{{session('data')[0]->id}}"/>
                             @endif
-                            <input type="hidden" name="roomprice" class="room-price" value=""/>
+                            <input type="hidden" name="roomprice" class="room-price" value="75"/>
                             <input type="hidden" name="ref" value="front"/>
                             <input type="submit" class="btn btn-primary mt-3" value="Submit"/>
                         </td>

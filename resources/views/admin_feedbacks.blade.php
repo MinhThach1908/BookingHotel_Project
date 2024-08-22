@@ -20,6 +20,7 @@
                         <tr>
                             <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
+                            <th>Customer</th>
                             <th>Feedback</th>
                             <th>Action</th>
                         </tr>
@@ -28,6 +29,7 @@
                         <tr>
                             <th><input type="checkbox" name="" id="select_all_ids"></th>
                             <th>#</th>
+                            <th>Customer</th>
                             <th>Feedback</th>
                             <th>Action</th>
                         </tr>
@@ -38,6 +40,7 @@
                                 <tr id="data_ids{{$d->id}}">
                                     <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$d->id}}"></td>
                                     <td>{{$d->id}}</td>
+                                    <td>{{$d->customer->full_name}}</td>
                                     <td>{{$d->feedback_content}}</td>
                                     <td>
                                         <a onclick="return confirm('Are you sure you want to delete this data?')" href="{{url('admin/testimonial/'.$d->id).'/delete'}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>

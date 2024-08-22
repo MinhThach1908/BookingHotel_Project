@@ -49,16 +49,16 @@
         @else
 
             <div class="row">
-                @foreach($room as $rooms)
+                @foreach($roomtype as $roomtypes)
                     <div class="col-md-4 col-sm-6">
                         <div id="serv_hover"  class="room">
                             <div class="room_img">
-                                <figure><img style="height: 200px;width: 320px" src="storage/imgs/{{$rooms->room_view_image}}" alt="#"/></figure>
+                                <figure><img style="height: 200px;width: 320px" src="{{$roomtypes->room_view_image}}" alt="#"/></figure>
                             </div>
                             <div class="bed_room">
-                                <h3>{{$rooms->roomtype->title}}</h3>
-                                <p style="padding:10px ">{!! Str::limit($rooms->room_detail,100) !!} </p>
-                                <a class="btn btn-primary" href="{{url('room_details',$rooms->id)}}">Room Details</a>
+                                <h3>{{$roomtypes->title}}</h3>
+                                <p style="padding:10px ">{!! Str::limit($roomtypes->detail,100) !!} </p>
+                                <a class="btn btn-primary" href="{{url('room_details')}}">Room Details</a>
                             </div>
                         </div>
                     </div>
