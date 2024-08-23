@@ -19,6 +19,11 @@ class RoomType extends Model
         return $this->hasMany(Room::class, 'room_type_id');
     }
 
+    function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     protected $fillable = [
         'title',
         'detail',

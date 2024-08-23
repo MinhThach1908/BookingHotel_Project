@@ -54,7 +54,7 @@
                     </div>
                     <div class="bed_room">
                         <h3>{{$room->title}}</h3>
-                        <p style="padding: 12px">{{$room->description}}</p>
+                        <p style="padding: 12px">{{$room->room_detail}}</p>
                         <h4 style="padding: 12px"> Room Type : {{$room->roomtype->title}} </h4>
                         <h3 style="padding: 12px"> Price : {{$room->roomtype->price}} </h3>
                     </div>
@@ -118,7 +118,7 @@
                             @if(Session::has('data'))
                                 <input type="hidden" name="customer_id" value="{{session('data')[0]->id}}"/>
                             @endif
-                            <input type="hidden" name="roomprice" class="room-price" value="75"/>
+                            <input type="hidden" name="roomprice" class="room-price" value="{{$room->roomtype->price}}"/>
                             <input type="hidden" name="ref" value="front"/>
                             <input type="submit" class="btn btn-primary mt-3" value="Submit"/>
                         </td>

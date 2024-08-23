@@ -28,6 +28,10 @@ class Booking extends Model
         return $this->belongsTo(Room::class);
     }
 
+    function Roomtype(){
+        return $this->belongsTo(RoomType::class,'room_type_id');
+    }
+
     function payment()
     {
         return $this->hasMany(Payment::class);

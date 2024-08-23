@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\RoomType;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Mail;
 
 // use Stripe\Stripe;
 

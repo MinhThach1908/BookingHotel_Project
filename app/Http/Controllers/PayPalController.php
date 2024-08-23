@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\Booking;
 
 class PayPalController extends Controller
 {
     public function paypal(Request $request){
+
+        $data = new Booking;
+        $data->customer_id = $request->customer_id;
+        $data->room_id = $request->room_id;
+        $data->checkin_date = $request->startDate;
+        $data->checkout_date = $request->endDate;
+        $data->total_adults = $request->total_adults;
+        $data->total_children = $request->total_children;
+        $data->save();
+
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
@@ -47,16 +58,8 @@ class PayPalController extends Controller
         $response = $provider->capturePaymentOrder($request->token);
 //        dd($response);
         if(isset($response['status']) && $response['status'] == 'COMPLETED'){
-
-            $data = new Booking;
-            $data->customer_id = $request->customer_id;
-            $data->room_id = $request->room_id;
-            $data->checkin_date = $request->checkin_date;
-            $data->checkout_date = $request->checkout_date;
-            $data->total_adults = $request->total_adults;
-            $data->total_children = $request->total_children;
-
-            return redirect()->back()->with('message','Booking Successful');
+            $bookingId = Booking::all()->last()->id;
+            return redirect('/send-booking-confirmation/'.$bookingId);
         } else {
             return redirect(route('cancel'));
         }
@@ -64,5 +67,12 @@ class PayPalController extends Controller
 
     public function cancel(){
 
+    }
+
+    public function sendBookingConfirmation($bookingId)
+    {
+        $booking = Booking::findOrFail($bookingId);
+        Mail::to('pandaminh2008@gmail.com')->send(new \App\Mail\HotelMail($booking));
+        return redirect('/our_rooms/')->with('message', 'Booking successfully confirmed!');
     }
 }

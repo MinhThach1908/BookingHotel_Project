@@ -111,9 +111,6 @@ route::get('/our_rooms', [HomeController::class, 'our_rooms']);
 route::get('/',[HomeController::class,'home']);
 
 // Mail
-Route::get('/', function (){
-    Mail::to('pandaminh2008@gmail.com')
-        ->send(new \App\Mail\HotelMail());
-});
+Route::get('/send-booking-confirmation/{bookingId}', [PayPalController::class, 'sendBookingConfirmation'])->name('send-booking-confirmation');
 
 

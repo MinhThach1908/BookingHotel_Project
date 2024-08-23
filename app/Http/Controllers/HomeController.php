@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Booking;
 use App\Models\RoomType;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class HomeController extends Controller
 {
     public function room_details($id)
