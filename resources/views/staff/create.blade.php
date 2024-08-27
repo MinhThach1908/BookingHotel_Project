@@ -35,7 +35,7 @@
                             </tr>
                             <tr>
                                 <th>Photo</th>
-                                <td><button type="button" id="upload_widget">Upload Image</button></td>
+                                <td><button class="btn btn-primary" type="button" id="upload_widget">Upload Image</button></td>
                             </tr>
                             <tr>
                                 <th>Bio</th>

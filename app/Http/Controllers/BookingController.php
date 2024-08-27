@@ -20,8 +20,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
-        return view('booking.index', ['data' => $bookings]);
+        $bookings= Booking::all();
+        return view('booking.index',['data'=>$bookings]);
     }
 
     /**
@@ -31,37 +31,38 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $customers = Customer::all();
-        return view('booking.create', ['data' => $customers]);
+        $customers= Customer::all();
+        return view('booking.create',['data'=>$customers]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'customer_id' => 'required',
-            'room_id' => 'required',
-            'checkin_date' => 'required',
-            'checkout_date' => 'required',
-            'total_adults' => 'required',
-            'roomprice' => 'required',
+            'customer_id'=>'required',
+            'room_id'=>'required',
+            'checkin_date'=>'required',
+            'checkout_date'=>'required',
+            'total_adults'=>'required',
+            'roomprice'=>'required',
         ]);
 
-        if ($request->ref == 'front') {
-            $sessionData = [
-                'customer_id' => $request->customer_id,
-                'room_id' => $request->room_id,
-                'checkin_date' => $request->checkin_date,
-                'checkout_date' => $request->checkout_date,
-                'total_adults' => $request->total_adults,
-                'total_children' => $request->total_children,
-                'roomprice' => $request->roomprice,
-                'ref' => $request->ref
+
+        if($request->ref=='front'){
+            $sessionData=[
+                'customer_id'=>$request->customer_id,
+                'room_id'=>$request->room_id,
+                'checkin_date'=>$request->checkin_date,
+                'checkout_date'=>$request->checkout_date,
+                'total_adults'=>$request->total_adults,
+                'total_children'=>$request->total_children,
+                'roomprice'=>$request->roomprice,
+                'ref'=>$request->ref
             ];
             session($sessionData);
             \Stripe\Stripe::setApiKey('sk_test_51JKcB7SFjUWoS3CIIaPlxPSREpJYoyPsn5KIhj2CBCM9z23dRUreOUwFq6eXmRYmgXNfxSozplocikiAFe3aX7sK008OH0sqy6');
@@ -73,7 +74,7 @@ class BookingController extends Controller
                         'product_data' => [
                             'name' => 'T-shirt',
                         ],
-                        'unit_amount' => $request->roomprice * 100,
+                        'unit_amount' => $request->roomprice*100,
                     ],
                     'quantity' => 1,
                 ]],
@@ -82,22 +83,21 @@ class BookingController extends Controller
                 'cancel_url' => 'http://localhost/laravel-apps/hotelManage/booking/fail',
             ]);
             return redirect($session->url);
-
-        } else {
-            $data = new Booking;
-            $data->customer_id = $request->customer_id;
-            $data->room_id = $request->room_id;
-            $data->checkin_date = $request->checkin_date;
-            $data->checkout_date = $request->checkout_date;
-            $data->total_adults = $request->total_adults;
-            $data->total_children = $request->total_children;
-            if ($request->ref == 'front') {
-                $data->ref = 'front';
-            } else {
-                $data->ref = 'admin';
+        }else{
+            $data=new Booking;
+            $data->customer_id=$request->customer_id;
+            $data->room_id=$request->room_id;
+            $data->checkin_date=$request->checkin_date;
+            $data->checkout_date=$request->checkout_date;
+            $data->total_adults=$request->total_adults;
+            $data->total_children=$request->total_children;
+            if($request->ref=='front'){
+                $data->ref='front';
+            }else{
+                $data->ref='admin';
             }
             $data->save();
-            return redirect('admin/booking/create')->with('Success', 'Data has been added.');
+            return redirect('admin/booking/create')->with('success','Data has been added.');
         }
 
     }
@@ -105,7 +105,7 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -116,7 +116,7 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -127,8 +127,8 @@ class BookingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -139,13 +139,13 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Booking::where('id', $id)->delete();
-        return redirect('admin/booking')->with('Success', 'Data has been deleted.');
+        Booking::where('id',$id)->delete();
+        return redirect('admin/booking')->with('success','Data has been deleted.');
     }
 
     // Check Available rooms

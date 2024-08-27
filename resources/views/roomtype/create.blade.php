@@ -21,7 +21,7 @@
                     <p class="text-success">{{session('Success')}}</p>
                 @endif
                 <div class="table-responsive">
-                    <form enctype="multipart/form-data" method="post" action="{{url('admin/roomtype/create')}}">
+                    <form name="menu-form" enctype="multipart/form-data" method="post" action="{{url('admin/roomtype/create')}}">
                         @csrf
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <tr>
@@ -38,7 +38,7 @@
                             </tr>
                             <tr>
                                 <th>Gallery</th>
-                                <td><input type="file" multiple name="imgs[]" /></td>
+                                <td><button class="btn btn-primary" type="button" id="upload_widget">Upload Image</button></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -53,5 +53,22 @@
 
     </div>
     <!-- /.container-fluid -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'dnzm9x2ep',
+                uploadPreset: 'Booking_Hotel'}, function (error, result) {
+                if (!error && result && result.event === "success") {
+                    //console.log('Done! Here is the image info: ', result.info.url);
+                    console.log('Done! Here is the image info: ', result.info.secure_url);
+                    document.forms['menu-form'].value = result.info.secure_url;
+                }
+            }
+        )
+
+        document.getElementById("upload_widget").addEventListener("click", function(){
+            myWidget.open();
+        }, false);
+    </script>
 
 @endsection

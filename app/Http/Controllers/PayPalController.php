@@ -59,7 +59,7 @@ class PayPalController extends Controller
 //        dd($response);
         if(isset($response['status']) && $response['status'] == 'COMPLETED'){
             $bookingId = Booking::all()->last()->id;
-            return redirecot('/send-booking-confirmation/'.$bookingId);
+            return redirect('/send-booking-confirmation/'.$bookingId);
         } else {
             return redirect(route('cancel'));
         }
