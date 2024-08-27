@@ -20,7 +20,7 @@
                         </tr>
                         <tr>
                             <th>Photo</th>
-                            <td><img width="100" src="{{'storage/app/'.$data->photo}}" /></td>
+                            <td><img width="100" src="{{$data->photo}}" /></td>
                         </tr>
                         <tr>
                             <th>Email</th>

@@ -33,7 +33,7 @@
                                         @if($data->roomtypeimgs)
                                             @foreach($data->roomtypeimgs as $img)
                                                 <td class="imgcol{{$img->id}}">
-                                                    <img width="150" src="{{'storage/app/'.$img->img_src}}"/>
+                                                    <img width="150" src="{{$img->img_src}}"/>
                                                 </td>
                                             @endforeach
                                         @endif
