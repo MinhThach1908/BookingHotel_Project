@@ -53,8 +53,8 @@
                                 <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$booking->id}}"></td>
                                 <td>{{$booking->id}}</td>
                                 <td>{{$booking->customer->full_name}}</td>
-                                <td>{{$booking->room->title}}</td>
-                                <td>{{$booking->room->roomtype->title}}</td>
+                                <td>{{$booking->room->title ?? ""}}</td>
+                                <td>{{$booking->room->roomtype->title ?? ""}}</td>
                                 <td>{{$booking->checkin_date}}</td>
                                 <td>{{$booking->checkout_date}}</td>
                                 <td>{{$booking->ref}}</td>
