@@ -94,10 +94,6 @@
                         <td><input name="customer_id" type="text" class="form-control"/></td>
                     </tr>
                     <tr>
-                        <th>Room Id <span class="text-danger">*</span></th>
-                        <td><input name="room_id" type="text" class="form-control"/></td>
-                    </tr>
-                    <tr>
                         <th>CheckIn Date <span class="text-danger">*</span></th>
                         <td><input id="startDate" name="startDate" type="date" class="form-control"/></td>
                     </tr>
@@ -118,6 +114,7 @@
                             @if(Session::has('data'))
                                 <input type="hidden" name="customer_id" value="{{session('data')[0]->id}}"/>
                             @endif
+                            <input type="hidden" name="room_id" value="{{$room->id}}">
                             <input type="hidden" name="roomprice" class="room-price" value="{{$room->roomtype->price}}"/>
                             <input type="hidden" name="ref" value="front"/>
                             <input type="submit" class="btn btn-primary mt-3" value="Submit"/>

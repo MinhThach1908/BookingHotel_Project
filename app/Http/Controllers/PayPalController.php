@@ -72,7 +72,7 @@ class PayPalController extends Controller
     public function sendBookingConfirmation($bookingId)
     {
         $booking = Booking::findOrFail($bookingId);
-        Mail::to('pandaminh2008@gmail.com')->send(new \App\Mail\HotelMail($booking));
+        Mail::to('/')->send(new \App\Mail\HotelMail($booking));
         return redirect('/our_rooms/')->with('message', 'Booking successfully confirmed!');
     }
 }
